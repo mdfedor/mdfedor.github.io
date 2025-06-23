@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="华硕rog幻16air安装archlinux+i3记录 查看电脑显卡状态,这条命令显示当前电脑的所有显卡，并且能看到加载的显卡驱动lspci -k -d ::03xx 最小化安装完成后,图形界面，窗口管理器均未安装,nouveau开源显卡驱动支持不行,禁用nouveauecho “blacklist nouveau” | sudo tee &#x2F;etc&#x2F;modprobe.d&#x2F;blacklist-nou">
+  <meta name="description" content="华硕rog幻16air安装archlinux+i3记录(最小化安装完成后,图形界面，窗口管理器均未安装) 查看电脑显卡状态,这条命令显示当前电脑的所有显卡，并且能看到加载的显卡驱动1lspci -k -d ::03xx 关闭nvidia默认的驱动1echo &quot;blacklist nouveau&quot; | sudo tee &#x2F;etc&#x2F;modprobe.d&#x2F;blacklist-nouv">
 <meta property="og:type" content="article">
 <meta property="og:title" content="install Arch">
 <meta property="og:url" content="http://example.com/2025/02/25/install-Arch/index.html">
 <meta property="og:site_name" content="One Hundred Years of Solitude">
-<meta property="og:description" content="华硕rog幻16air安装archlinux+i3记录 查看电脑显卡状态,这条命令显示当前电脑的所有显卡，并且能看到加载的显卡驱动lspci -k -d ::03xx 最小化安装完成后,图形界面，窗口管理器均未安装,nouveau开源显卡驱动支持不行,禁用nouveauecho “blacklist nouveau” | sudo tee &#x2F;etc&#x2F;modprobe.d&#x2F;blacklist-nou">
+<meta property="og:description" content="华硕rog幻16air安装archlinux+i3记录(最小化安装完成后,图形界面，窗口管理器均未安装) 查看电脑显卡状态,这条命令显示当前电脑的所有显卡，并且能看到加载的显卡驱动1lspci -k -d ::03xx 关闭nvidia默认的驱动1echo &quot;blacklist nouveau&quot; | sudo tee &#x2F;etc&#x2F;modprobe.d&#x2F;blacklist-nouv">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-25T11:34:00.000Z">
-<meta property="article:modified_time" content="2025-02-25T11:44:33.355Z">
+<meta property="article:modified_time" content="2025-06-23T08:31:03.461Z">
 <meta property="article:author" content="moon">
 <meta property="article:tag" content="install_OS">
 <meta name="twitter:card" content="summary">
@@ -218,10 +218,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-02-25 19:34:00 / 修改时间：19:44:33" itemprop="dateCreated datePublished" datetime="2025-02-25T19:34:00+08:00">2025-02-25</time>
+              <time title="创建时间：2025-02-25 19:34:00" itemprop="dateCreated datePublished" datetime="2025-02-25T19:34:00+08:00">2025-02-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-23 16:31:03" itemprop="dateModified" datetime="2025-06-23T16:31:03+08:00">2025-06-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -243,27 +249,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>华硕rog幻16air安装archlinux+i3记录</p>
-<p>查看电脑显卡状态,这条命令显示当前电脑的所有显卡，并且能看到加载的显卡驱动<br>lspci -k -d ::03xx</p>
-<p>最小化安装完成后,图形界面，窗口管理器均未安装,nouveau开源显卡驱动支持不行,禁用nouveau<br>echo “blacklist nouveau” | sudo tee /etc/modprobe.d/blacklist-nouveau.conf<br>更新initramfs<br>sudo mkinitcpio -P<br>重启,然后确认nouveau是否加载<br>lsmod | grep nouveau</p>
-<p>安装下amd显卡驱动<br>sudo pacman -S xf86-video-amdgpu mesa libglvnd<br>安装固件支持<br>sudo pacman -S linux-firmware<br>加载amdgpu模块<br>sudo vim /etc/mkinitcpio.conf<br>MODULES=(amdgpu)<br>sudo mkinitcpio -P<br>sudo grub-mkconfig -o /boot/grub/grub.cfg</p>
-<span id="more"></span>
-<p>查看下dri目录<br>ls /dev/dri<br>ls /sys/class/drm/</p>
-<p>如果card0不存在，有card1,就需要手动告诉Xorg使用card1<br>sudo vim /etc/X11/xorg.conf.d/20-amdgpu.conf<br>Section “Device”<br>    Identifier “AMD Graphics”<br>    Driver “amdgpu”<br>EndSection</p>
-<p>有可能当前用户没有权限访问card1,所以把当前用户加入到video组<br>sudo usermod -aG video $USER</p>
-<p>然后安装桌面环境<br>sudo pacman -S xorg xorg-xinit i3status dmenu alacritty picom feh<br>vim ~/.xinitrc<br>exec i3<br>startx</p>
-<p>重启Xorg进程<br>sudo systemctl restart display-manager</p>
-<p>查看下日志<br>dmesg | grep -i ‘drm|vga|nvidia|amdgpu’</p>
-<p>进入i3一些配置<br>设置全局DPI<br>echo “Xft.dpi: 150” &gt;&gt; ~/.Xresources<br>xrdb -merge ~/.Xresources<br>i3-msg restart</p>
-<p>安装dm<br>sudo pacman -S lightdm lightdm-gtk-greeter<br>sudo systemctl enable lightdm</p>
-<p>把独显关掉，不然键盘热<br>cat /sys/bus/pci/devices/0000:64:00.0/power/runtime_status</p>
-<p>sudo pacman -S bbswitch<br>sudo modprobe bbswitch<br>echo OFF | sudo tee /proc/acpi/bbswitch</p>
-<p>这个如果没关掉<br>sudo vim /etc/udev/rules.d/99-nvidia-suspend.rules<br>ACTION==”add”,SUBSYSTEM==”pci”,ATTR{vendor}==”0x10de”,ATTR{power/control}=”auto”<br>插电源时候让电源管理状态为suspend<br>echo auto | sudo tee /sys/bus/pci/devices/0000:64:00.0/power/control<br>重启加载udev规则<br>sudo udevadm control —reload<br>sudo udevadm trigger</p>
-<p>ACTION==”change”,SUBSYSTEM==”power_supply”,ATTR{online}==”1”,RUN+=”/usr/bin/tlp ac”<br>ACTION==”change”,SUBSYSTEM==”power_supply”,ATTR{online}==”0”,RUN+=”/usr/bin/tlp bat”</p>
-<p>修改屏幕亮度和色度<br>sudo pacman -S redshift<br>redshift -O 4500 -b 0.8</p>
-<p>电源使用查看<br>tlp-stat -s</p>
-<p>amd显卡状态查看<br>redeontop</p>
-<p>aplay -l</p>
+        <h2 id="华硕rog幻16air安装archlinux-i3记录-最小化安装完成后-图形界面，窗口管理器均未安装"><a href="#华硕rog幻16air安装archlinux-i3记录-最小化安装完成后-图形界面，窗口管理器均未安装" class="headerlink" title="华硕rog幻16air安装archlinux+i3记录(最小化安装完成后,图形界面，窗口管理器均未安装)"></a>华硕rog幻16air安装archlinux+i3记录(最小化安装完成后,图形界面，窗口管理器均未安装)</h2><ul>
+<li>查看电脑显卡状态,这条命令显示当前电脑的所有显卡，并且能看到加载的显卡驱动<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lspci -k -d ::03xx</span><br></pre></td></tr></table></figure></li>
+<li>关闭nvidia默认的驱动<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;blacklist nouveau&quot;</span> | sudo <span class="built_in">tee</span> /etc/modprobe.d/blacklist-nouveau.conf</span><br></pre></td></tr></table></figure></li>
+<li>更新initramfs<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkinitcpio -P</span><br></pre></td></tr></table></figure>
+<span id="more"></span></li>
+<li>重启,然后确认nouveau是否加载<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep nouveau</span><br></pre></td></tr></table></figure></li>
+<li>安装下amd显卡驱动<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S xf86-video-amdgpu mesa libglvnd</span><br></pre></td></tr></table></figure></li>
+<li>安装固件支持<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S linux-firmware</span><br></pre></td></tr></table></figure></li>
+<li>加载amdgpu模块<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/mkinitcpio.conf</span><br><span class="line">MODULES=(amdgpu)</span><br><span class="line">sudo mkinitcpio -P</span><br><span class="line">sudo grub-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure></li>
+<li>查看下dri目录<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> /dev/dri</span><br><span class="line"><span class="built_in">ls</span> /sys/class/drm/</span><br></pre></td></tr></table></figure></li>
+<li>如果card0不存在，有card1,就需要手动告诉Xorg使用card1<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lspci -nn <span class="comment">#lspci -nn可以查看所有BusID</span></span><br><span class="line">sudo vim /etc/X11/xorg.conf.d/20-amdgpu.conf</span><br><span class="line">Section <span class="string">&quot;Device&quot;</span></span><br><span class="line">	Identifier <span class="string">&quot;AMD Graphics&quot;</span></span><br><span class="line">	Driver <span class="string">&quot;amdgpu&quot;</span></span><br><span class="line">	Option <span class="string">&quot;Device&quot;</span> <span class="string">&quot;dev/dri/card1&quot;</span></span><br><span class="line">	BusID  <span class="string">&quot;PCI:65:0:0&quot;</span></span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure></li>
+<li>有可能当前用户没有权限访问card1,所以把当前用户加入到video组<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG video <span class="variable">$USER</span></span><br></pre></td></tr></table></figure></li>
+<li>然后安装桌面环境<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S xorg xorg-xinit i3status dmenu alacritty picom feh</span><br><span class="line">vim ~/.xinitrc</span><br><span class="line"><span class="built_in">exec</span> i3</span><br><span class="line">startx</span><br></pre></td></tr></table></figure></li>
+<li>重启Xorg进程<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart display-manager</span><br></pre></td></tr></table></figure></li>
+<li>查看下日志<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmesg | grep -i <span class="string">&#x27;drm|vga|nvidia|amdgpu&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="进入i3一些配置"><a href="#进入i3一些配置" class="headerlink" title="进入i3一些配置"></a>进入i3一些配置</h2><ul>
+<li>设置全局DPI<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Xft.dpi: 150&quot;</span> &gt;&gt; ~/.Xresources</span><br><span class="line">xrdb -merge ~/.Xresources</span><br><span class="line">i3-msg restart</span><br></pre></td></tr></table></figure></li>
+<li>安装dm<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S lightdm lightdm-gtk-greeter</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> lightdm</span><br></pre></td></tr></table></figure></li>
+<li>修改屏幕亮度和色度<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S redshift</span><br><span class="line">redshift -O 4500 -b 0.8</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="对于华硕rog幻16air双显卡切换没研究明白，但是如果只用独显，没用集显，默认的集显好像也没关掉，会导致键盘顶部那一块很烫，解决办法"><a href="#对于华硕rog幻16air双显卡切换没研究明白，但是如果只用独显，没用集显，默认的集显好像也没关掉，会导致键盘顶部那一块很烫，解决办法" class="headerlink" title="对于华硕rog幻16air双显卡切换没研究明白，但是如果只用独显，没用集显，默认的集显好像也没关掉，会导致键盘顶部那一块很烫，解决办法"></a>对于华硕rog幻16air双显卡切换没研究明白，但是如果只用独显，没用集显，默认的集显好像也没关掉，会导致键盘顶部那一块很烫，解决办法</h2><ul>
+<li>先安装nvidia显卡驱动<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S nvidia nvidia-utils nvidia-settings</span><br></pre></td></tr></table></figure></li>
+<li>然后修改下配置文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/modprobe.d/nvidia-drm.conf </span><br><span class="line">options nvidia-drm modeset=0</span><br><span class="line">sudo mkinitcpio -P <span class="comment">#执行一下</span></span><br></pre></td></tr></table></figure></li>
+<li>改一下grub,这个是开机不让nvidia显卡接管，电源设置成节能<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/grub</span><br><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=<span class="string">&quot;loglevel=5 nowatchdog modprobe.blacklist=nouveau nvidia-drm.modeset=0 amd_pstate=passive amd_pstate.default_profile=powersave&quot;</span></span><br><span class="line">sudo grub-mkconfig -o /boot/grub/grub.cfg <span class="comment">#执行一下,重启一下</span></span><br></pre></td></tr></table></figure></li>
+<li>可以下一个cpupower,这个可以查看当前一些频率性能状态<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S cpupower</span><br><span class="line">cpupower frequency-info <span class="comment">#查看状态</span></span><br></pre></td></tr></table></figure></li>
+<li>yay-git的签名问题<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gpg --search-keys <span class="string">&quot;lilac (build machine)&quot;</span></span><br><span class="line">gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys F9F9FA97A403F63E</span><br><span class="line">sudo pacman-key --lsign-key F9F9FA97A403F63E</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
     </div>
 
@@ -344,6 +360,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8E%E7%A1%95rog%E5%B9%BB16air%E5%AE%89%E8%A3%85archlinux-i3%E8%AE%B0%E5%BD%95-%E6%9C%80%E5%B0%8F%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E-%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%EF%BC%8C%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8%E5%9D%87%E6%9C%AA%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">华硕rog幻16air安装archlinux+i3记录(最小化安装完成后,图形界面，窗口管理器均未安装)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5i3%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">进入i3一些配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E5%8D%8E%E7%A1%95rog%E5%B9%BB16air%E5%8F%8C%E6%98%BE%E5%8D%A1%E5%88%87%E6%8D%A2%E6%B2%A1%E7%A0%94%E7%A9%B6%E6%98%8E%E7%99%BD%EF%BC%8C%E4%BD%86%E6%98%AF%E5%A6%82%E6%9E%9C%E5%8F%AA%E7%94%A8%E7%8B%AC%E6%98%BE%EF%BC%8C%E6%B2%A1%E7%94%A8%E9%9B%86%E6%98%BE%EF%BC%8C%E9%BB%98%E8%AE%A4%E7%9A%84%E9%9B%86%E6%98%BE%E5%A5%BD%E5%83%8F%E4%B9%9F%E6%B2%A1%E5%85%B3%E6%8E%89%EF%BC%8C%E4%BC%9A%E5%AF%BC%E8%87%B4%E9%94%AE%E7%9B%98%E9%A1%B6%E9%83%A8%E9%82%A3%E4%B8%80%E5%9D%97%E5%BE%88%E7%83%AB%EF%BC%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">对于华硕rog幻16air双显卡切换没研究明白，但是如果只用独显，没用集显，默认的集显好像也没关掉，会导致键盘顶部那一块很烫，解决办法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
